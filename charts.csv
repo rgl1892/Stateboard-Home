@@ -1,0 +1,80 @@
+Chart: ,Front: ,Back: ,No. of Insets,Inset 1: ,Inset 2: ,Inset 3: ,Inset 4: ,Panels: ,Type: ,Check?: 
+AF (H/L) 1,W,E,2,Cape Verde Extension,Gulf of Guinea Inset,,,10,Basic,TRUE
+AF (H/L) 2,W,E,2,Kigali Inset,Yemen Inset,,,8,Basic,FALSE
+AF (H/L) 3,,AF (H/L) 3,1,South Africa Inset,,,,6,Basic,TRUE
+AF (H/L) 4,E,W,0,,,,,6,Basic,TRUE
+AS (H/L) 1,W,E,0,,,,,8,Basic,TRUE
+AS (H/L) 2,W,E,1,Novosibirsk Inset,,,,10,Basic,FALSE
+AS (H/L) 3,W,E,4,Beijing Inset,Dalian Inset,Shanghai Inset,Tashkent Inset,10,Basic,TRUE
+AS (H/L) 4,S,N,0,,,,,7,Basic,TRUE
+AS (H/L) 5,W,E,1,Islamabad Inset,,,,10,Basic,FALSE
+AS (H/L) 6,W,E,2,Hong Kong Inset,Manila Inset,,,8,Basic,TRUE
+AS (H/L) 7,W,E,0,,,,,8,Basic,TRUE
+AS (H/L) 8,W,E,0,,,,,7,Basic,
+AS (H/L) 9,E,W,1,Malaysia/Singapore Inset,,,,8,Basic,TRUE
+AS (H/L) 10,W,E,2,Bahrain Inset,Muscat-UAE Inset,,,9,Basic,FALSE
+AS (H/L) 11,N,S,1,Maldives Inset,,,,7,Basic,TRUE
+AT (H) 1,N,S,2,Azores Inset,Iceland Inset,,,7,Basic,TRUE
+AT (H/L) 2,S,N,0,,,,,7,Basic,
+AT (H) 3,,AT (H) 3,0,,,,,6,Basic,
+AUS (H/L) 1,E,W,1,Nadi Inset,,,,9,Basic,TRUE
+AUS (H/L) 2,S,N,0,,,,,8,Basic,FALSE
+AUS (H/L) 3,N,S,1,Perth Inset,,,,9,Basic,TRUE
+AUS (H/L) 4,W,E,2,Adelaide Inset,Melbourne Inset,,,9,Basic,TRUE
+AUS (H/L) 5,N,S,0,,,,,5,Basic,
+CAM (H/L) 1,S,N,0,,,,,7,Basic,TRUE
+CAM (H/L) 2,N,S,1,Santo Domingo Inset,,,,8,Basic,TRUE
+EU (H/L) 1,W,E,1,Svalbard Extension,,,,7,Basic,FALSE
+EU (H/L) 2,S,N,0,,,,,6,Basic,TRUE
+EU (H/L) 3,S,N,0,,,,,8,Basic,TRUE
+EU (H/L) 4,N,S,1,Moscow Inset,,,,9,Basic,TRUE
+EU (H/L) 5,S,N,0,,,,,7,Basic,FALSE
+EU (H/L) 6,S,N,0,,,,,8,Basic,TRUE
+EU (H/L) 7,S,N,0,,,,,9,Basic,TRUE
+EU (H/L) 8,S,N,0,,,,,7,Basic,FALSE
+EU (H/L) 9,S,N,0,,,,,8,Basic,TRUE
+EU (H/L) 10,S,N,0,,,,,8,Basic,TRUE
+EU (H/L) 11,S,N,0,,,,,7,Basic,TRUE
+EU (H/L) 12,S,N,0,,,,,7,Basic,TRUE
+EU (H/L) 13,W,E,0,,,,,7,Basic,
+EU (H/L) 14,,EU (H/L) 14,1,Israel Inset,,,,6,Basic,
+EU (L) 40,,EU (L) 40,1,Irish Extension  Inset,,,,7,Basic,TRUE
+LON Inset,,LON/MAN,0,,,,,7,Basic,FALSE
+C EUR (H/L),E,W,0,,,,,7,Basic,TRUE
+NAM (H) 1,N,S,0,,,,,8,Basic,TRUE
+NAM (H) 2,N,S,0,,,,,5,Basic,
+NAM (H) 3,N,S,0,,,,,8,Basic,
+NAM (H) 4,N,S,0,,,,,9,Basic,TRUE
+NAM (H) 5,,NAM (H) 5,1,Bahamas/Miami Inset,,,,8,Basic,FALSE
+NAM (H) 6,S,N,0,,,,,7,Basic,TRUE
+NAM (H) 7,S,N,0,,,,,8,Basic,TRUE
+NAM (L) 1,W,E,0,,,,,7,Basic,FALSE
+NAM (L) 2,N,S,0,,,,,8,Basic,TRUE
+NAM (L) 3,W,E,0,,,,,8,Basic,TRUE
+NAM (L) 4,N,S,1,Los Angeles Inset,,,,9,Basic,
+NAM (L) 5,N,S,0,,,,,7,Basic,
+NAM (L) 6,W,E,0,,,,,7,Basic,TRUE
+NAM (L) 7,W,E,0,,,,,8,Basic,FALSE
+NAM (L) 8,N,S,0,,,,,8,Basic,TRUE
+NAM (L) 9,N,S,0,,,,,8,Basic,TRUE
+NAM (L) 10,W,E,1,New York Inset,,,,9,Basic,
+NAM (L) 11,S,N,0,,,,,8,Basic,
+NAM (L) 12,S,N,0,,,,,8,Basic,
+NAM (L) 13,S,N,0,,,,,7,Basic,TRUE
+NAM (L) 14,S,N,0,,,,,7,Basic,FALSE
+PAC 1,,PAC 1,1,Anchorage Inset,,,,7,Basic,TRUE
+PAC 2,,PAC 2,2,Hawaii Inset,Guam Inset,,,7,Basic,TRUE
+PAC 3,,PAC 3,4,South America Extension,Tahiti Inset,Rarotonga Inset,Samoa Inset,6,Basic,
+POLAR (HL) 1,W,E,1,Kangerlussuaq Inset,,,,8,Basic,TRUE
+SAM (H/L) 1,W,E,0,,,,,8,Basic,TRUE
+SAM (H/L) 2,S,N,1,Bogota Inset,,,,9,Basic,FALSE
+SAM (H) 3,E,W,0,,,,,8,Basic,TRUE
+SAM (L) 3,E,W,0,,,,,8,Basic,TRUE
+SAM (H/L) 4,H,L,0,,,,,9,Basic,FALSE
+SAM (H/L) 5,S,N,0,,,,,6,Basic,TRUE
+AS 80A,N,S,0,,,,,9,Basic,TRUE
+AS 80B,N,S,0,,,,,9,Basic,TRUE
+AS 81,N,S,4,Beijing Inset,Hong Kong Inset,Ha Noi Inset,Shanghai Inset,8,Basic,TRUE
+AS 82,N,S,2,Hong Kong Inset,Nagoya Kansai Inset,,,10,Basic,FALSE
+AS 83,N,S,1,Ha Noi Inset,,,,9,Basic,TRUE
+AS 84,S,N,4,Hong Kong Inset,Manila Inset,Malaysia/Singapore Inset,Taipei Inset,10,Basic,TRUE

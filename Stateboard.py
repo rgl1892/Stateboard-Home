@@ -407,19 +407,19 @@ class TabThree(wx.Panel):
 		self.drawGraph()
 		
 
-		# self.figure2 = Figure()
-		# self.axes = self.figure2.add_subplot(111)
-		# self.canvas2 = FigureCanvas(self, -1, self.figure2)
-		# self.chartBox.Add(self.canvas2, 1, wx.LEFT | wx.TOP | wx.GROW)
-		# self.SetSizer(self.chartBox)
-		# self.Fit()
-		# self.drawGraph()
-		# self.drawGraph2()
+		self.figure2 = Figure()
+		self.axes = self.figure2.add_subplot(111)
+		self.canvas2 = FigureCanvas(self, -1, self.figure2)
+		self.chartBox.Add(self.canvas2, 1, wx.LEFT | wx.TOP | wx.GROW)
+		self.SetSizer(self.chartBox)
+		self.Fit()
+		self.drawGraph()
+		self.drawGraph2()
 
 		grid.Add(mainbtnPanel, (10,0), (0,0), wx.EXPAND, 5)
 		grid.Add(self.userList, (0,0), (10,0), wx.EXPAND, 5)
 		grid.Add(self.canvas, (0,5), (0,0), wx.EXPAND, 5)
-		# grid.Add(self.canvas2, (0,6), (0,0), wx.EXPAND, 5)
+		grid.Add(self.canvas2, (0,6), (0,0), wx.EXPAND, 5)
 		self.SetSizerAndFit(grid)
 
 		self.charts.Enable(False)
@@ -428,6 +428,11 @@ class TabThree(wx.Panel):
 		self.Centre()
 		self.Show(True)
 
+		self.grid = grid
+
+		
+	def grid1(self):
+		return self.grid
 		
 	def drawGraph(self):
 		t = np.arange(0.0, 2.0, 0.01)
@@ -435,7 +440,7 @@ class TabThree(wx.Panel):
 		self.axes.plot(t, s)
 		
 	def drawGraph2(self):
-		t = np.linspace(0.0, 2.0, num=100,)
+		t = np.linspace(0.0, 2.0, num=100)
 		s = 1 + np.sin(2 * np.pi *t)
 		self.axes.plot(t, s,'r:')
 
@@ -453,23 +458,23 @@ class TabThree(wx.Panel):
 			# self.userDetails.Append('{}{}'.format(header, item))
 			n+=1
 		
+	def onCharts(self,event):
+		print(1)
 		
 	def onCurrent(self,event):
 		self.axes.clear()
 		chartPanel = wx.Panel(self,-1)
-		# self.chartBox = wx.BoxSizer()
-		# self.figure = Figure()
+		self.chartBox = wx.BoxSizer()
+		self.figure = Figure()
 		self.axes = self.figure.add_subplot(111)
 		self.canvas = FigureCanvas(self, -1, self.figure)
-		# self.chartBox.Add(self.canvas, 1, wx.LEFT | wx.TOP | wx.GROW)
-		# self.SetSizer(self.chartBox)
-		# self.Fit()
+		self.chartBox.Add(self.canvas, 1, wx.LEFT | wx.TOP | wx.GROW)
+		self.SetSizer(self.chartBox)
+		self.Fit()
 		self.drawGraph2()
 
-	def onCharts(self,event):
-		print(100)
-		self.figure.drawGraph()
-		
+		grid = self.grid
+		grid.Add(self.canvas, (0,5), (0,0), wx.EXPAND, 5)	
 		
 class MainFrame(wx.Frame):
 	
