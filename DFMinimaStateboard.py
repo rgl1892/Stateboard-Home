@@ -1,6 +1,8 @@
 import requests
 import pandas as pd
 import wx
+import numpy as np
+import math
 
 
 url = 'http://newt.ykf.navtech.corp/cgi-bin/mks_query.cgi?Query=Chart%20Orders%20Last%203%20months%20Minima&ColumnSet=default'
@@ -19,62 +21,104 @@ col index
 for i in range(len(df)):
     exec("col{} =[]".format(i))
 
+# for j in df:
+#     for i in range(len(df)):
+#         exec("col{}.append(df[j][i])".format(j))
+
 for j in df:
     for i in range(len(df)):
-        exec("col{}.append(df[j][i])".format(j))
+        if df[j][i] != df[j][i]:
+            exec("col{}.append('N/A')".format(j))
+        else:
+            exec("col{}.append(df[j][i])".format(j))        
 
 for i in range(len(df)):
     exec("row{} =[]".format(i))
 
 for i in range(len(df)):
     for j in df:
-        exec("row{}.append(df[j][i])".format(i))
+        if not(isinstance(df[j][i],str)) and not(isinstance(df[j][i],np.float64)):
+            exec("row{}.append('N/A')".format(i))
+        elif isinstance(df[j][i],np.float64):
+            exec("row{}.append(str(df[j][i]))".format(i))
+        else:
+            exec("row{}.append(df[j][i])".format(i))
 
-print(row1)
+for line in col2:
+    print(type(line))
 
-print(len(col1))
-print(len(df))
+print(col1[1393])
 
 
 class TabOne(wx.Panel):
     
     def __init__(self,parent):
-        # updateClourDB()
         wx.Panel.__init__(self,parent)
-        grid = wx.GridBagSizer(10,10)
-
+        self.grid = wx.GridBagSizer(10,10)
 
         self.AerodromeList = wx.ListBox(self, -1)
-        self.AerodromeList.Bind(wx.EVT_LISTBOX, self.onAerodromeSelect)
+        self.AerodromeList.Bind(wx.EVT_LISTBOX, self.onAerodromeSelect)          
 
-        i =0
-        while i < 2209:
-            self.AerodromeList.Append(col1[i])
-            i +=1
-            # print(i)
-            
-
+        self.CheckList = wx.ListBox(self, -1)
+        self.CheckList.Bind(wx.EVT_LISTBOX, self.onCheckListSelect)
+        
         self.RevList = wx.ListBox(self, -1)
-        self.RevList.Bind(wx.EVT_LISTBOX, self.onRevisionSelect)
+        self.RevList.Bind(wx.EVT_LISTBOX, self.onRevListSelect)
 
-        grid.Add(self.AerodromeList, (0,0), (10,0), wx.EXPAND,5)
-        grid.Add(self.RevList, (0,1), (10,0), wx.EXPAND,5)
+        rev = 0
+        for rev in range(52):
+            self.RevList.Append(str(rev+1))
 
-        self.SetSizerAndFit(grid)
+        self.grid.Add(self.AerodromeList, (0,1), (10,0), wx.EXPAND, 5)
+        self.grid.Add(self.CheckList, (0,2), (10,0), wx.EXPAND, 5)
+        self.grid.Add(self.RevList, (0,0), (10,0), wx.EXPAND, 5)
+
+        self.SetSizerAndFit(self.grid)
         self.Center()
         self.Show(True)
+        
+    def onRevListSelect(self,event):
+        self.AerodromeList.Clear()
+        self.CheckList.Clear()
+        sel = self.RevList.GetSelection()
+        print(sel)
+        self.rev = sel + 1
+        self.occurences = ([k for k , j in enumerate(col2) if j == self.rev])
+        self.dum = []
+        for pos in self.occurences:
+            self.AerodromeList.Append(col1[pos])
+        print(self.occurences)
+        self.SetSizerAndFit(self.grid)
 
     def onAerodromeSelect(self,event):
         sel = self.AerodromeList.GetSelection()
-        self.RevList.Clear()
-        print(sel)
-        for data in  
+        name = self.AerodromeList.GetString(sel)      
+        location = col1.index(name)
+        self.CheckList.Clear()
+
+        for line in self.occurences:
+            if eval("row{}[2]".format(line)) == self.rev:
+                row = eval("row{}".format(line))
+                for data in row:
+                    if data == 'N/A' or data == 'nan':
+                        continue
+                    else:
+                        self.CheckList.Append(data)
+            else:
+                row = exec("row{}[2]".format(line))
+                print('hi',line,self.rev)
+                print(row)
+        self.SetSizerAndFit(self.grid)
 
         
+        
 
-    def onRevisionSelect():
-        sel = self.RevList.GetSelection()
+    def onCheckListSelect(self,event):
+        sel = self.CheckList.GetSelection()
         print(sel)
+
+    
+
 
 class MainFrame(wx.Frame):
 
