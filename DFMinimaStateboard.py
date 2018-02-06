@@ -44,10 +44,10 @@ for i in range(len(df)):
         else:
             exec("row{}.append(df[j][i])".format(i))
 
-for line in col2:
-    print(type(line))
+# for line in col2:
+    # print(type(line))
 
-print(col1[1393])
+# print(col1[1393])
 
 
 class TabOne(wx.Panel):
@@ -65,6 +65,18 @@ class TabOne(wx.Panel):
         self.RevList = wx.ListBox(self, -1)
         self.RevList.Bind(wx.EVT_LISTBOX, self.onRevListSelect)
 
+        minimaButtonPanel = wx.Panel(self,-1)
+        mBox = wx.BoxSizer(wx.VERTICAL)
+        self.mbp = wx.ComboBox(minimaButtonPanel, choices=['True','False','All'], style=wx.CB_READONLY)
+        self.mbpLabel = wx.StaticText(minimaButtonPanel, label='Show Minima needed', style=wx.ALIGN_CENTER)
+        mBox.Add(self.mbpLabel, 0, wx.TOP,5)
+        mBox.Add(self.mbp, 0, wx.TOP, 5)
+        mBox.AddStretchSpacer()
+
+        self.mbp.Bind(wx.EVT_COMBOBOX,self.onCombo)
+
+        minimaButtonPanel.SetSizer(mBox)
+
         rev = 0
         for rev in range(52):
             self.RevList.Append(str(rev+1))
@@ -72,32 +84,48 @@ class TabOne(wx.Panel):
         self.grid.Add(self.AerodromeList, (0,1), (10,0), wx.EXPAND, 5)
         self.grid.Add(self.CheckList, (0,2), (10,0), wx.EXPAND, 5)
         self.grid.Add(self.RevList, (0,0), (10,0), wx.EXPAND, 5)
+        self.grid.Add(minimaButtonPanel, (0,3), (0,0), wx.EXPAND, 5)
 
         self.SetSizerAndFit(self.grid)
         self.Center()
         self.Show(True)
+
+    def onCombo(self,event):
+        if self.mbp.GetValue() == 'True':
+            self.test = True
+        elif self.mbp.GetValue() == 'False':
+            self.test = False
+        else:
+            self.test = 'All'
+            
         
     def onRevListSelect(self,event):
         self.AerodromeList.Clear()
         self.CheckList.Clear()
         sel = self.RevList.GetSelection()
         print(sel)
-        self.rev = sel + 1
+        self.rev = sel + 1.0
         self.occurences = ([k for k , j in enumerate(col2) if j == self.rev])
         self.dum = []
         for pos in self.occurences:
             self.AerodromeList.Append(col1[pos])
-        print(self.occurences)
+        # print(self.occurences)
         self.SetSizerAndFit(self.grid)
 
     def onAerodromeSelect(self,event):
         sel = self.AerodromeList.GetSelection()
         name = self.AerodromeList.GetString(sel)      
-        location = col1.index(name)
+        location = ([k for k , j in enumerate(col1) if j == name])
         self.CheckList.Clear()
+        if self.test == True:
+            print('hi')
+        elif self.test == False:
+            print('no')
+        else:
+            print('winner winner')
 
         for line in self.occurences:
-            if eval("row{}[2]".format(line)) == self.rev:
+            if float(eval("row{}[2]".format(line))) == self.rev and line in location:
                 row = eval("row{}".format(line))
                 for data in row:
                     if data == 'N/A' or data == 'nan':
@@ -105,9 +133,7 @@ class TabOne(wx.Panel):
                     else:
                         self.CheckList.Append(data)
             else:
-                row = exec("row{}[2]".format(line))
-                print('hi',line,self.rev)
-                print(row)
+                continue
         self.SetSizerAndFit(self.grid)
 
         
