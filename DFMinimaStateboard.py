@@ -44,6 +44,9 @@ for i in range(len(df)):
         else:
             exec("row{}.append(df[j][i])".format(i))
 
+mincol1 = []
+mincol2 = []
+
 # for line in col2:
     # print(type(line))
 
@@ -55,6 +58,9 @@ class TabOne(wx.Panel):
     def __init__(self,parent):
         wx.Panel.__init__(self,parent)
         self.grid = wx.GridBagSizer(10,10)
+        
+        self.RevList = wx.ListBox(self, -1)
+        self.RevList.Bind(wx.EVT_LISTBOX, self.onRevListSelect)
 
         self.AerodromeList = wx.ListBox(self, -1)
         self.AerodromeList.Bind(wx.EVT_LISTBOX, self.onAerodromeSelect)          
@@ -62,9 +68,6 @@ class TabOne(wx.Panel):
         self.CheckList = wx.ListBox(self, -1)
         self.CheckList.Bind(wx.EVT_LISTBOX, self.onCheckListSelect)
         
-        self.RevList = wx.ListBox(self, -1)
-        self.RevList.Bind(wx.EVT_LISTBOX, self.onRevListSelect)
-
         minimaButtonPanel = wx.Panel(self,-1)
         mBox = wx.BoxSizer(wx.VERTICAL)
         self.mbp = wx.ComboBox(minimaButtonPanel, choices=['True','False','All'], style=wx.CB_READONLY)
@@ -90,9 +93,22 @@ class TabOne(wx.Panel):
         self.Center()
         self.Show(True)
 
+        #default is to show all aerodromes not just minimaa
+        self.test = 'All'
+
     def onCombo(self,event):
         if self.mbp.GetValue() == 'True':
+            mincol1 = []
+            mincol2 = []
             self.test = True
+            occurences = ([k for k , j in enumerate(col15) if j == True])
+            
+            for row in occurences:
+                print(row)
+                mincol1.append(col1[row])
+                mincol2.append(col2[row])
+            print(mincol1)
+            
         elif self.mbp.GetValue() == 'False':
             self.test = False
         else:
@@ -106,16 +122,15 @@ class TabOne(wx.Panel):
         print(sel)
         self.rev = sel + 1.0
         self.occurences = ([k for k , j in enumerate(col2) if j == self.rev])
-        self.dum = []
         for pos in self.occurences:
-            self.AerodromeList.Append(col1[pos])
+            self.AerodromeList.Append(mincol1[pos])
         # print(self.occurences)
         self.SetSizerAndFit(self.grid)
 
     def onAerodromeSelect(self,event):
         sel = self.AerodromeList.GetSelection()
         name = self.AerodromeList.GetString(sel)      
-        location = ([k for k , j in enumerate(col1) if j == name])
+        location = ([k for k , j in enumerate(mincol1) if j == name])
         self.CheckList.Clear()
         if self.test == True:
             print('hi')
@@ -136,8 +151,6 @@ class TabOne(wx.Panel):
                 continue
         self.SetSizerAndFit(self.grid)
 
-        
-        
 
     def onCheckListSelect(self,event):
         sel = self.CheckList.GetSelection()
